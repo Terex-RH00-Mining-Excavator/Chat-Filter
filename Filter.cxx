@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
-using namespace std;
-vector<string> filter(vector<string> words, vector<string> hash){
+
+std::vector<std::string> filter(std::vector<std::string> words, std::vector<std::string> hash){
     for(int x = 0; x < hash.size(); x++){
         for(int i =0; i < words.size(); i++){
             if(words[i] == hash[x]){
@@ -15,20 +15,20 @@ vector<string> filter(vector<string> words, vector<string> hash){
 }
 int main()
 {
-    vector<string> expletives = {"fuck", "fucking", "cock", "bitch"}; // input curse words
-    vector<string> sentence;
-    string check;
-    int i, v;
-    cout << "Length: ";
-    cin >> v;
-    for(i =0; i < v; i++){
-        cout << "> ";
-        cin >> check;
+    std::vector<std::string> expletives = {"fuck", "fucking", "cock", "bitch"}; // input curse words
+    std::vector<std::string> sentence;
+    std::string check;
+    
+    while(true){
+        std::cout << "> ";
+        std::cin >> check;
+        if(check == "end!") break;
         sentence.push_back(check);
     }
-    cout << "Output: ";
-    vector<string> FF = filter(expletives, sentence);
-    for(string i: FF){
-        cout << i << " ";
+    
+    std::cout << "Output: ";
+    std::vector<std::string> FF = filter(expletives, sentence);
+    for(std::string i: FF){
+        std::cout << i << " ";
     }
 }
