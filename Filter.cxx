@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-void filter(const std::vector<std::string> words, std::vector<std::string> &hash){
+void filter(const std::vector<std::string> &words, std::vector<std::string> &hash){
     for(int x = 0; x < hash.size(); x++){
         for(int i =0; i < words.size(); i++){
             if(!(words.at(i) != hash.at(x))){
