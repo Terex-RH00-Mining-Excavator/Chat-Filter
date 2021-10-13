@@ -1,35 +1,26 @@
 #include <iostream>
+#include <string>
 #include <vector>
 
 void filter(const std::vector<std::string> &words, std::vector<std::string> &hash){
-    for(int x = 0; x < hash.size(); x++){
-        for(int i =0; i < words.size(); i++){
-            if(!(words.at(i) != hash.at(x))){
-                for(char &j: hash.at(x)){
-                    j = '#';
-                }
-            }
+    for(std::string& i: hash){
+        for(const std::string& j: words){
+            if(i == j) for(char& x: i) x = '#';
         }
     }
 }
 
 int main()
 {
-    std::vector<std::string> expletives = {"fuck", "fucking", "cock", "bitch"}; // input curse words
-    std::vector<std::string> sentence;
-    std::string check;
-    
-    while(true){
-        std::cout << "> ";
-        std::cin >> check;
-        if(check == "end!") break;
-        sentence.push_back(check);
-    }
-    
+    std::vector<std::string> expletives = {"fuck", "fucking", "cock", "bitch"}, sentence; // input curse words
+    std::string str;
+    size_t i = 0;
+    std::cout << "> ";
+    do{
+        std::cin >> str;
+        sentence.push_back(str);
+    }while(sentence.at(i++)[str.size()-1] != '.');
     filter(expletives, sentence);
-    
-    std::cout << "Output: ";
-    for(std::string i: sentence){
-        std::cout << i << " ";
-    }
+    for(const std::string& j: sentence) std::cout << j << " ";
+    std::cout<<std::endl;
 }
